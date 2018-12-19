@@ -1,14 +1,11 @@
 #include <iostream>
 #include <conio.h>
-#include <windows.h>
 #include "Textbuffer.hpp"
-#include "MapBase.hpp"
-#include "Map1.cpp"
 
 using namespace std;
 
-const unsigned width = 100;
-const unsigned height = 2;
+const unsigned width = 50;
+const unsigned height = 10;
 
 
 const char player = 'P';
@@ -41,32 +38,14 @@ void SetNewPos(int input, unsigned * xPos, unsigned * yPos) {
     }
 }
 
-MapBase* ChooseMap() {
-    int levelNumber;
-    cout << "Bitte Wären Sie das Level aus (1-4): ";
-    cin >> levelNumber;
-
-    Map1 map1;
-    if (levelNumber == 1) {
-        cout << endl << "Level " << levelNumber << " ausgewählt";
-        Sleep(3000);
-        return &map1;
-    }
-    return &map1;
-}
-
 int main()
 {
-    Map1 map1;
-    MapBase * mp = & map1;
-
     unsigned currentXPos = 0;
     unsigned currentYPos = 0;
     int inputChar = 0;
 
-    TextBuffer * tb = new TextBuffer(width,height, mp);
-    tb->SetChar(1,1,player);
-
+    TextBuffer * tb = new TextBuffer(width,height);
+    tb->SetChar(0,0,player);
 
  /*   tb->SetChar(15,2,'O');
     tb->SetChar(12,4,'O');

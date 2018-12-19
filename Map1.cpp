@@ -7,8 +7,7 @@ public:
     {
         Name = "Map 1";
         Design_ptr = {
-            "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX                                                          X"
-            /*"X                                                          X"
+            "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
             "X                                                          X"
             "X                                                          X"
             "X                                                          X"
@@ -21,9 +20,8 @@ public:
             "X                                                          X"
             "X                                                          X"
             "X                                                          X"
-            "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"*/
+            "X                                                          X"
+            "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
         };
     }
-
-
 };
