@@ -3,7 +3,7 @@
 
 using namespace std;
 
-TextBuffer::TextBuffer(unsigned width, unsigned height) : field(new char[width * height]()), width(width), height(height) {
+TextBuffer::TextBuffer(unsigned width, unsigned height, char * map) : width(width), height(height), field(map) {
 }
 
 TextBuffer::~TextBuffer() {
@@ -25,24 +25,9 @@ char TextBuffer::GetChar(unsigned x, unsigned y) {
 void TextBuffer::Render() {
     unsigned length = (width*height);
 
-    for(unsigned i = 0; i <= width+1; i++)
-    {
-        cout << "X";
-    }
-
-    cout << endl << "X";
-
-
     for(unsigned i = 0; i < length; i++)
     {
         cout << field[i];
-        if ((i + 1) % width == 0) {
-            cout << "X" << endl << "X";
-        }
-    }
-    for(unsigned i = 0; i <= width; i++)
-    {
-        cout << "X";
     }
 }
 

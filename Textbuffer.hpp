@@ -7,7 +7,7 @@ class TextBuffer
     unsigned width, height;
 public:
     char * field = nullptr;
-    TextBuffer(unsigned width, unsigned height);
+    TextBuffer(unsigned width, unsigned height, char * map);
     ~TextBuffer();
     void SetChar(unsigned x, unsigned y, char character);
     char GetChar(unsigned x, unsigned y);
