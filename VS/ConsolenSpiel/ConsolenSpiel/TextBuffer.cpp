@@ -2,6 +2,7 @@
 #include <iostream>
 #include "TextBuffer.h"
 #include <sstream>
+#include <Windows.h>
 
 using namespace std;
 
@@ -25,6 +26,9 @@ char TextBuffer::GetChar(unsigned x, unsigned y) {
 }
 
 void TextBuffer::Render() {
+	COORD coord = { 0, 0 };
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+
 	unsigned length = (width*height);
 	stringstream ss;
 	for (unsigned i = 0; i < length; i++)
