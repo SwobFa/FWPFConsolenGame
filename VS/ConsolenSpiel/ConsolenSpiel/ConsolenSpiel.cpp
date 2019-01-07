@@ -4,38 +4,30 @@
 #include "TextBuffer.h"
 #include <windows.h>
 #include <fstream>
+#include "Player.h"
 
 using namespace std;
 
 const unsigned width = 51;
 const unsigned height = 15;
 
-
-
-const char player = 'P';
-
-void SetNewPos(int input, unsigned * xPos, unsigned * yPos) {
+void MovePlayer(int input, Player * player) {
 	switch (input) {
 		// w
 	case 119:
-		if (*yPos > 0)
-			(*yPos)--;
+		player->Move(DirectionEnum::North);
 		break;
 		// a
 	case 97:
-		if (*xPos > 0)
-			(*xPos)--;
-
+		player->Move(DirectionEnum::West);
 		break;
 		// s
 	case 115:
-		if (*yPos < height - 1)
-			(*yPos)++;
+		player->Move(DirectionEnum::South);
 		break;
 		// d
 	case 100:
-		if (*xPos < width - 1)
-			(*xPos)++;
+		player->Move(DirectionEnum::East);
 		break;
 	default:
 		break;
@@ -64,24 +56,20 @@ void ShowConsoleCursor(bool showFlag)
 	CONSOLE_CURSOR_INFO     cursorInfo;
 
 	GetConsoleCursorInfo(out, &cursorInfo);
-	cursorInfo.bVisible = showFlag; // set the cursor visibility
+	cursorInfo.bVisible = showFlag;
 	SetConsoleCursorInfo(out, &cursorInfo);
 }
 
 int main()
 {
-	
 	ShowConsoleCursor(false);
 
 	char* map =GetMapFromFile();
 
-	unsigned coinsCount = 0;
-	unsigned currentXPos = 1;
-	unsigned currentYPos = 1;
 	int inputChar = 0;
 
 	TextBuffer * tb = new TextBuffer(width, height, map);
-	tb->SetChar(1, 1, player);
+	Player * player = new Player(1, 1, tb);
 
 	while (inputChar != 27) {
 
@@ -93,23 +81,10 @@ int main()
 
 			if (inputChar == 119 || inputChar == 97 || inputChar == 115 || inputChar == 100)
 			{
-				unsigned newXPos = currentXPos;
-				unsigned newYPos = currentYPos;
-
-				SetNewPos(inputChar, &newXPos, &newYPos);
-				char test = tb->GetChar(newXPos, newYPos);
-				if (test != 'x') {
-					if (test == 'o')
-						coinsCount++;
-					tb->SetChar(currentXPos, currentYPos, ' ');
-					currentXPos = newXPos;
-					currentYPos = newYPos;
-					tb->SetChar(currentXPos, currentYPos, player);
-				}
+				MovePlayer(inputChar, player);
 			}
 		}
-
-		cout << endl << "Anzahl der gesammelten Coins: " << coinsCount;
+		cout << endl << "Anzahl der gesammelten Coins: " << player->CoinsCount;
 	}
 
 	return 0;

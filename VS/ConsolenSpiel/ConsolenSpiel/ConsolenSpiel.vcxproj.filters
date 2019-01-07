@@ -21,6 +21,18 @@
     <ClInclude Include="TextBuffer.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectionEnum.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Figure.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -30,6 +42,12 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="TextBuffer.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Figure.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

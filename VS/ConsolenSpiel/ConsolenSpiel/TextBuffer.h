@@ -3,9 +3,9 @@
 
 class TextBuffer
 {
-
-	unsigned width, height;
 public:
+	unsigned Width, Height;
+
 	char * field = nullptr;
 	TextBuffer(unsigned width, unsigned height, char * map);
 	~TextBuffer();
