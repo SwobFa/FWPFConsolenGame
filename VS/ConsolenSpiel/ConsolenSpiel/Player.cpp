@@ -19,7 +19,7 @@ void Player::Move(DirectionEnum direction)
 
 	char test = textBuffer->GetChar(newXPos, newYPos);
 	if (test != 'x') {
-		if (test == 'o')
+		if (test == '*')
 			CoinsCount++;
 		textBuffer->SetChar(currentX, currentY, ' ');
 		currentX = newXPos;

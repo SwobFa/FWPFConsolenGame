@@ -8,7 +8,7 @@ class Figure
 protected:
 	char sign;
 	unsigned currentX, currentY;
-	DirectionEnum direction;
+	DirectionEnum direction = DirectionEnum::South;
 	TextBuffer * textBuffer;
 	void SetNewPos(DirectionEnum direction, unsigned * xPos, unsigned * yPos);
 public:

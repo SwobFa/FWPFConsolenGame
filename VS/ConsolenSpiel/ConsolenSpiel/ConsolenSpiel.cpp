@@ -5,6 +5,7 @@
 #include <windows.h>
 #include <fstream>
 #include "Player.h"
+#include "Enemy.h"
 
 using namespace std;
 
@@ -70,11 +71,19 @@ int main()
 
 	TextBuffer * tb = new TextBuffer(width, height, map);
 	Player * player = new Player(1, 1, tb);
+	Enemy * enemy = new Enemy(48, 12, tb, 100, DirectionEnum::South);
+	Enemy * enemy2 = new Enemy(4, 9, tb, 200, DirectionEnum::North);
+	Enemy * enemy3 = new Enemy(45, 2, tb, 50, DirectionEnum::West);
 
 	while (inputChar != 27) {
 
 		//std::system("cls");
 		tb->Render();
+
+		enemy->Move();
+		enemy2->Move();
+		enemy3->Move();
+
 		if (_kbhit())
 		{
 			inputChar = _getch();

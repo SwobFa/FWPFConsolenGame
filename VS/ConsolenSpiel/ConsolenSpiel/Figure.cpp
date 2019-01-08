@@ -4,7 +4,7 @@
 
 Figure::Figure(unsigned currentX, unsigned currentY, TextBuffer * textBuffer) : currentX(currentX), currentY(currentY), textBuffer(textBuffer)
 {
-	direction = DirectionEnum::North;
+
 }
 
 void Figure::Move(DirectionEnum direction)
