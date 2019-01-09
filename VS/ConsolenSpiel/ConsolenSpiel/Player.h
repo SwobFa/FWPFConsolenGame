@@ -8,7 +8,7 @@ public:
 	Player(unsigned currentX, unsigned currentY, TextBuffer * textBuffer);
 	~Player();
 	void Move(DirectionEnum direction);
-	void Shoot();
+	char Shoot();
 	unsigned CoinsCount;
 
 };

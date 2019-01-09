@@ -11,11 +11,15 @@ protected:
 	DirectionEnum direction = DirectionEnum::South;
 	TextBuffer * textBuffer;
 	void SetNewPos(DirectionEnum direction, unsigned * xPos, unsigned * yPos);
+	unsigned shotStartX, shotEndX;
+	unsigned shotStartY, shotEndY;
+	unsigned shotTickCounter;
 public:
 	Figure(unsigned currentX, unsigned currentY, TextBuffer * textBuffer);
 	~Figure();
 	virtual void Move(DirectionEnum direction);
-	virtual void Shoot();
+	virtual char Shoot();
+	virtual void ClearBullets();
 };
 
 #endif

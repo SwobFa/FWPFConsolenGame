@@ -73,7 +73,7 @@ int main()
 	Player * player = new Player(1, 1, tb);
 	Enemy * enemy = new Enemy(48, 12, tb, 100, DirectionEnum::South);
 	Enemy * enemy2 = new Enemy(4, 9, tb, 200, DirectionEnum::North);
-	Enemy * enemy3 = new Enemy(45, 2, tb, 50, DirectionEnum::West);
+	Enemy * enemy3 = new Enemy(45, 2, tb, 80, DirectionEnum::West);
 
 	while (inputChar != 27) {
 
@@ -92,6 +92,11 @@ int main()
 			{
 				MovePlayer(inputChar, player);
 			}
+			else if(inputChar == 32)
+			{
+				char rtf = player->Shoot();
+			}
+			
 		}
 		cout << endl << "Anzahl der gesammelten Coins: " << player->CoinsCount;
 	}

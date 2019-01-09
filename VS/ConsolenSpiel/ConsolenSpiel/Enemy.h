@@ -12,8 +12,7 @@ public:
 	Enemy(unsigned currentX, unsigned currentY, TextBuffer * textBuffer, unsigned speed, DirectionEnum startDirection);
 	~Enemy();
 	void Move();
-	void Shoot();
-
+	char Shoot();
 };
 
 #endif

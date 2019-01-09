@@ -56,16 +56,14 @@ DirectionEnum Enemy::GetRandomDirection()
 		return DirectionEnum::East;
 	case 2:
 		return DirectionEnum::South;
-	case 3:
-		return DirectionEnum::West;
 	default:
-		break;
+		return  DirectionEnum::West;
 	}
 }
 
-void Enemy::Shoot()
+char Enemy::Shoot()
 {
-
+	return 'x';
 }
 
 

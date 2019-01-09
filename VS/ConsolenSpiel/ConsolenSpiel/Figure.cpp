@@ -12,9 +12,9 @@ void Figure::Move(DirectionEnum direction)
 	
 }
 
-void Figure::Shoot()
+char Figure::Shoot()
 {
-	
+	return 'x';
 }
 
 void Figure::SetNewPos(DirectionEnum direction, unsigned* xPos, unsigned* yPos)
@@ -46,6 +46,27 @@ void Figure::SetNewPos(DirectionEnum direction, unsigned* xPos, unsigned* yPos)
 		break;
 	}
 }
+
+void Figure::ClearBullets()
+{
+	/*if(shotTickCounter == 50)
+	{
+		
+		textBuffer->SetChar(shotStartX, shotStartY, ' ');
+		if(shotStartX == shotEndX)
+		{
+
+			while (test != ' ')
+			{
+				
+			}
+		}
+
+		
+	}
+	shotTickCounter++*/;
+}
+
 
 
 Figure::~Figure()
