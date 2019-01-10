@@ -2,7 +2,7 @@
 #include "Figure.h"
 
 
-Figure::Figure(unsigned currentX, unsigned currentY, TextBuffer * textBuffer) : currentX(currentX), currentY(currentY), textBuffer(textBuffer)
+Figure::Figure(short currentX, short currentY, TextBuffer * textBuffer) : currentX(currentX), currentY(currentY), textBuffer(textBuffer)
 {
 
 }
@@ -12,12 +12,12 @@ void Figure::Move(DirectionEnum direction)
 	
 }
 
-char Figure::Shoot()
+COORD Figure::Shoot()
 {
-	return 'x';
+	return {0,0};
 }
 
-void Figure::SetNewPos(DirectionEnum direction, unsigned* xPos, unsigned* yPos)
+void Figure::SetNewPos(DirectionEnum direction, short* xPos, short* yPos)
 {
 
 	switch (direction) {

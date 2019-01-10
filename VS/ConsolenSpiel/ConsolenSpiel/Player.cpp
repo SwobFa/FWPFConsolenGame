@@ -4,7 +4,7 @@
 
 using namespace std;
 
-Player::Player(unsigned currentX, unsigned currentY, TextBuffer * textBuffer) : Figure(currentX, currentY, textBuffer)
+Player::Player(short currentX, short currentY, TextBuffer * textBuffer) : Figure(currentX, currentY, textBuffer)
 {
 	sign = 'P';
 	textBuffer->SetChar(currentX, currentY, sign);
@@ -13,8 +13,8 @@ Player::Player(unsigned currentX, unsigned currentY, TextBuffer * textBuffer) : 
 void Player::Move(DirectionEnum MovedDrection)
 {
 	direction = MovedDrection;
-	unsigned newXPos = currentX;
-	unsigned newYPos = currentY;
+	short newXPos = currentX;
+	short newYPos = currentY;
 
 	SetNewPos(direction, &newXPos, &newYPos);
 
@@ -29,7 +29,7 @@ void Player::Move(DirectionEnum MovedDrection)
 	}
 }
 
-char Player::Shoot()
+COORD Player::Shoot()
 {
 	bool hit = false;
 
@@ -58,22 +58,24 @@ char Player::Shoot()
 
 	SetNewPos(direction, &shotStartX, &shotStartY);
 
-	unsigned newXPos = shotStartX;
-	unsigned newYPos = shotStartY;
+	short newXPos = shotStartX;
+	short newYPos = shotStartY;
 
 	while (!hit)
 	{
 		SetNewPos(direction, &newXPos, &newYPos);
 
+		shotEndX = newXPos;
+		shotEndY = newYPos;
+
 		char test = textBuffer->GetChar(newXPos, newYPos);
 		if (test != 'x' && test != 'B' && test != '*') {
-			shotEndX = newXPos;
-			shotEndY = newYPos;
+			
 			textBuffer->SetChar(shotEndX, shotEndY, '.');
 		}
 		else
 		{
-			return test;
+			return {shotEndX, shotEndY};
 		}
 	}
 	

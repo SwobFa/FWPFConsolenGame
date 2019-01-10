@@ -5,11 +5,11 @@
 class Player : public Figure
 {
 public:
-	Player(unsigned currentX, unsigned currentY, TextBuffer * textBuffer);
+	Player(short currentX, short currentY, TextBuffer * textBuffer);
 	~Player();
 	void Move(DirectionEnum direction);
-	char Shoot();
-	unsigned CoinsCount;
+	COORD Shoot();
+	short CoinsCount;
 
 };
 

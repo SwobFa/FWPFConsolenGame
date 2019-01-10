@@ -9,8 +9,8 @@
 
 using namespace std;
 
-const unsigned width = 51;
-const unsigned height = 15;
+const short width = 51;
+const short height = 15;
 
 void MovePlayer(int input, Player * player) {
 	switch (input) {
@@ -94,7 +94,11 @@ int main()
 			}
 			else if(inputChar == 32)
 			{
-				char rtf = player->Shoot();
+				COORD rtf = player->Shoot();
+
+				enemy->Hit(rtf);
+				enemy2->Hit(rtf);
+				enemy3->Hit(rtf);
 			}
 			
 		}

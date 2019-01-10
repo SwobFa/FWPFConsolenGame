@@ -4,15 +4,16 @@
 
 class Enemy : public Figure
 {
-	unsigned ticks;
-	unsigned speed;
-	unsigned moveCounter;
+	short ticks;
+	short speed;
+	short moveCounter;
 	DirectionEnum GetRandomDirection();
 public:
-	Enemy(unsigned currentX, unsigned currentY, TextBuffer * textBuffer, unsigned speed, DirectionEnum startDirection);
+	Enemy(short currentX, short currentY, TextBuffer * textBuffer, short speed, DirectionEnum startDirection);
 	~Enemy();
 	void Move();
-	char Shoot();
+	COORD Shoot();
+	void Hit(COORD const coords);
 };
 
 #endif
