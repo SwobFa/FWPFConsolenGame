@@ -21,9 +21,6 @@
     <ClInclude Include="TextBuffer.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="DirectionEnum.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
@@ -31,6 +28,18 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyBase.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyImmovable.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyRandomMove.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyWallRunner.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
@@ -50,7 +59,16 @@
     <ClCompile Include="Player.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy.cpp">
+    <ClCompile Include="EnemyBase.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyImmovable.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyRandomMove.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyWallRunner.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

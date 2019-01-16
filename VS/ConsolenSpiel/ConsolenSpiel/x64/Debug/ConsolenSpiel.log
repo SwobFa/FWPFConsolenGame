@@ -1,2 +1,3 @@
-﻿  Enemy.cpp
+﻿  Figure.cpp
+c:\users\steve\documents\uni\git\game\vs\consolenspiel\consolenspiel\figure.cpp(87): warning C4715: "Figure::Shoot": Nicht alle Codepfade geben einen Wert zurück.
   ConsolenSpiel.vcxproj -> C:\Users\Steve\Documents\Uni\Git\Game\VS\ConsolenSpiel\x64\Debug\ConsolenSpiel.exe

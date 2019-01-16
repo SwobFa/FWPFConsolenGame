@@ -8,7 +8,6 @@ public:
 	Player(short currentX, short currentY, TextBuffer * textBuffer);
 	~Player();
 	void Move(DirectionEnum direction);
-	COORD Shoot();
 	short CoinsCount;
 
 };

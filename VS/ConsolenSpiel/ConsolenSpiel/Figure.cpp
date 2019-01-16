@@ -7,16 +7,6 @@ Figure::Figure(short currentX, short currentY, TextBuffer * textBuffer) : curren
 
 }
 
-void Figure::Move(DirectionEnum direction)
-{
-	
-}
-
-COORD Figure::Shoot()
-{
-	return {0,0};
-}
-
 void Figure::SetNewPos(DirectionEnum direction, short* xPos, short* yPos)
 {
 
@@ -34,12 +24,12 @@ void Figure::SetNewPos(DirectionEnum direction, short* xPos, short* yPos)
 		break;
 		// s
 	case DirectionEnum::South:
-		if (*yPos < textBuffer->Height - 1)
+		if (*yPos <= textBuffer->Height - 1)
 			(*yPos)++;
 		break;
 		// d
 	case DirectionEnum::East:
-		if (*xPos < textBuffer->Width - 1)
+		if (*xPos <= textBuffer->Width - 1)
 			(*xPos)++;
 		break;
 	default:
@@ -47,25 +37,107 @@ void Figure::SetNewPos(DirectionEnum direction, short* xPos, short* yPos)
 	}
 }
 
-void Figure::ClearBullets()
-{
-	/*if(shotTickCounter == 50)
-	{
-		
-		textBuffer->SetChar(shotStartX, shotStartY, ' ');
-		if(shotStartX == shotEndX)
-		{
 
-			while (test != ' ')
-			{
-				
-			}
+void Figure::Hit(_COORD const coords)
+{
+	if (currentX == coords.X && currentY == coords.Y)
+	{
+		Health--;
+		if (Health == 0)
+		{
+			textBuffer->SetChar(currentX, currentY, ' ');
 		}
 
-		
+
 	}
-	shotTickCounter++*/;
 }
+
+COORD Figure::Shoot()
+{
+	if (shotTickCounter == 250)
+	{
+		shotClearCounter = 0;
+		shotTickCounter = 0;
+		shotStartX = currentX;
+		shotStartY = currentY;
+
+		SetNewPos(direction, &shotStartX, &shotStartY);
+
+		short newXPos = shotStartX;
+		short newYPos = shotStartY;
+
+		while (true)
+		{
+			char charOnPos = textBuffer->GetChar(newXPos, newYPos);
+			if (charOnPos != 'x' && charOnPos != 'B' && charOnPos != '*' &&  charOnPos != 'P') {
+
+				textBuffer->SetChar(newXPos, newYPos, '.');
+
+				shotEndX = newXPos;
+				shotEndY = newYPos;
+			}
+			else
+			{
+				return { newXPos, newYPos };
+			}
+			SetNewPos(direction, &newXPos, &newYPos);
+		}
+	}
+	shotTickCounter++;
+}
+
+
+void Figure::ClearBullets()
+{
+
+	if (shotStartX != 0 && shotStartY != 0 && shotEndX != 0 && shotEndY != 0)
+	{
+		if (shotClearCounter == 230)
+		{
+			if (shotStartX == shotEndX)
+				shotStartY < shotEndY ? ClearBulletsVertical(shotStartY, shotEndY, shotStartX) : ClearBulletsVertical(shotEndY, shotStartY, shotStartX);
+			else
+				shotStartX < shotEndX ? ClearBulletsHorizontal(shotStartX, shotEndX, shotStartY) : ClearBulletsHorizontal(shotEndX, shotStartX, shotStartY);
+
+			shotStartX = shotEndX = shotStartY = shotEndY = 0;
+			shotTickCounter = 0;
+		}
+
+		shotClearCounter++;
+	}
+
+}
+
+void Figure::ClearBulletsHorizontal(short startX, short endX, short yCoord)
+{
+	short currentXToDelete = startX;
+
+	while (currentXToDelete <= endX)
+	{
+		char charOnPos = textBuffer->GetChar(currentXToDelete, yCoord);
+		if (charOnPos == '.')
+			textBuffer->SetChar(currentXToDelete, yCoord, ' ');
+
+		currentXToDelete++;
+	}
+
+}
+
+void Figure::ClearBulletsVertical(short startY, short endY, short xCoord)
+{
+	short currentYToDelete = startY;
+
+	while (currentYToDelete <= endY)
+	{
+		char charOnPos = textBuffer->GetChar(xCoord, currentYToDelete);
+		if (charOnPos == '.')
+			textBuffer->SetChar(xCoord, currentYToDelete, ' ');
+
+		currentYToDelete++;
+	}
+}
+
+
 
 
 

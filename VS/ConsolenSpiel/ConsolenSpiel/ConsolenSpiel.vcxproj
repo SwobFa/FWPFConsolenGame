@@ -152,7 +152,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="DirectionEnum.h" />
-    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EnemyBase.h" />
+    <ClInclude Include="EnemyImmovable.h" />
+    <ClInclude Include="EnemyRandomMove.h" />
+    <ClInclude Include="EnemyWallRunner.h" />
     <ClInclude Include="Figure.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Player.h" />
@@ -160,7 +163,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ConsolenSpiel.cpp" />
-    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnemyBase.cpp" />
+    <ClCompile Include="EnemyImmovable.cpp" />
+    <ClCompile Include="EnemyRandomMove.cpp" />
+    <ClCompile Include="EnemyWallRunner.cpp" />
     <ClCompile Include="Figure.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
