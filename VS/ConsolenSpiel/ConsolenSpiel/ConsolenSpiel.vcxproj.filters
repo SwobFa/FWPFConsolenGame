@@ -13,6 +13,18 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Headerdateien\Helper">
+      <UniqueIdentifier>{94da5bed-4781-43c1-9db6-0adff7fe1703}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Models">
+      <UniqueIdentifier>{199b6e1b-73e1-43a1-b92a-4f3891a58d51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Model">
+      <UniqueIdentifier>{39b60a07-8577-4db9-840d-c58e4bae48d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maps">
+      <UniqueIdentifier>{38c7f150-1751-4c3b-921f-49da5efe3359}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -24,23 +36,35 @@
     <ClInclude Include="DirectionEnum.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Figure.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Headerdateien</Filter>
+    <ClInclude Include="MillisecondsHelper.h">
+      <Filter>Headerdateien\Helper</Filter>
     </ClInclude>
     <ClInclude Include="EnemyBase.h">
-      <Filter>Headerdateien</Filter>
+      <Filter>Headerdateien\Models</Filter>
     </ClInclude>
     <ClInclude Include="EnemyImmovable.h">
-      <Filter>Headerdateien</Filter>
+      <Filter>Headerdateien\Models</Filter>
     </ClInclude>
     <ClInclude Include="EnemyRandomMove.h">
-      <Filter>Headerdateien</Filter>
+      <Filter>Headerdateien\Models</Filter>
     </ClInclude>
     <ClInclude Include="EnemyWallRunner.h">
+      <Filter>Headerdateien\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Figure.h">
+      <Filter>Headerdateien\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Headerdateien\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
       <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="MapReader.h">
+      <Filter>Headerdateien\Helper</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -53,26 +77,42 @@
     <ClCompile Include="TextBuffer.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Figure.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="EnemyBase.cpp">
-      <Filter>Quelldateien</Filter>
+      <Filter>Quelldateien\Model</Filter>
     </ClCompile>
     <ClCompile Include="EnemyImmovable.cpp">
-      <Filter>Quelldateien</Filter>
+      <Filter>Quelldateien\Model</Filter>
     </ClCompile>
     <ClCompile Include="EnemyRandomMove.cpp">
-      <Filter>Quelldateien</Filter>
+      <Filter>Quelldateien\Model</Filter>
     </ClCompile>
     <ClCompile Include="EnemyWallRunner.cpp">
+      <Filter>Quelldateien\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Figure.cpp">
+      <Filter>Quelldateien\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Quelldateien\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="map.txt" />
+    <ResourceCompile Include="ConsolenSpiel.rc">
+      <Filter>Ressourcendateien</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="map1.txt">
+      <Filter>Maps</Filter>
+    </Text>
+    <Text Include="map2.txt">
+      <Filter>Maps</Filter>
+    </Text>
+    <Text Include="map3.txt">
+      <Filter>Maps</Filter>
+    </Text>
   </ItemGroup>
 </Project>

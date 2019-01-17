@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Figure.h"
+#include "MillisecondsHelper.h"
 
 
 Figure::Figure(short currentX, short currentY, TextBuffer * textBuffer) : currentX(currentX), currentY(currentY), textBuffer(textBuffer)
@@ -54,10 +55,9 @@ void Figure::Hit(_COORD const coords)
 
 COORD Figure::Shoot()
 {
-	if (shotTickCounter == 250)
+	if ((get_milliseconds() - lastShotMs >= 1000 || lastShotMs == 0) && Health > 0)
 	{
-		shotClearCounter = 0;
-		shotTickCounter = 0;
+		lastShotMs = get_milliseconds();
 		shotStartX = currentX;
 		shotStartY = currentY;
 
@@ -83,7 +83,8 @@ COORD Figure::Shoot()
 			SetNewPos(direction, &newXPos, &newYPos);
 		}
 	}
-	shotTickCounter++;
+
+	return {0,0};
 }
 
 
@@ -92,7 +93,7 @@ void Figure::ClearBullets()
 
 	if (shotStartX != 0 && shotStartY != 0 && shotEndX != 0 && shotEndY != 0)
 	{
-		if (shotClearCounter == 230)
+		if (get_milliseconds() - lastShotMs >= 150)
 		{
 			if (shotStartX == shotEndX)
 				shotStartY < shotEndY ? ClearBulletsVertical(shotStartY, shotEndY, shotStartX) : ClearBulletsVertical(shotEndY, shotStartY, shotStartX);
@@ -100,10 +101,7 @@ void Figure::ClearBullets()
 				shotStartX < shotEndX ? ClearBulletsHorizontal(shotStartX, shotEndX, shotStartY) : ClearBulletsHorizontal(shotEndX, shotStartX, shotStartY);
 
 			shotStartX = shotEndX = shotStartY = shotEndY = 0;
-			shotTickCounter = 0;
 		}
-
-		shotClearCounter++;
 	}
 
 }

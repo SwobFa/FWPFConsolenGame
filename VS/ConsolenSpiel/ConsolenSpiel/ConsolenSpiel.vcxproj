@@ -157,8 +157,12 @@
     <ClInclude Include="EnemyRandomMove.h" />
     <ClInclude Include="EnemyWallRunner.h" />
     <ClInclude Include="Figure.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="MapReader.h" />
+    <ClInclude Include="MillisecondsHelper.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="TextBuffer.h" />
   </ItemGroup>
   <ItemGroup>
@@ -168,6 +172,7 @@
     <ClCompile Include="EnemyRandomMove.cpp" />
     <ClCompile Include="EnemyWallRunner.cpp" />
     <ClCompile Include="Figure.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -178,7 +183,12 @@
     <ClCompile Include="TextBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="map.txt" />
+    <Text Include="map1.txt" />
+    <Text Include="map2.txt" />
+    <Text Include="map3.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ConsolenSpiel.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

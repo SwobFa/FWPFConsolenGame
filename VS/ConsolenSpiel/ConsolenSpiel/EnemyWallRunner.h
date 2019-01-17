@@ -1,5 +1,8 @@
-#pragma once
+#ifndef ENEMYWALLRUNNER_H
+#define ENEMYWALLRUNNER_H
+
 #include "EnemyBase.h"
+
 class EnemyWallRunner : public EnemyBase
 {
 public:
@@ -9,3 +12,4 @@ public:
 	void Move();
 };
 
+#endif

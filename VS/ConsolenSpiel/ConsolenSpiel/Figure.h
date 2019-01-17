@@ -16,7 +16,7 @@ protected:
 	short currentX, currentY;
 	short shotStartX, shotEndX;
 	short shotStartY, shotEndY;
-	short shotTickCounter, shotClearCounter;
+	long lastShotMs;
 	DirectionEnum direction = DirectionEnum::South;
 	TextBuffer * textBuffer;
 	bool shotFired = false;

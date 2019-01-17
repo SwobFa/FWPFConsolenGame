@@ -1,5 +1,8 @@
-#pragma once
+#ifndef ENEMYRANDOMMOVE_H
+#define ENEMYRANDOMMOVE_H
+
 #include "EnemyBase.h"
+
 class EnemyRandomMove : public EnemyBase
 {
 public:
@@ -10,3 +13,4 @@ public:
 
 };
 
+#endif

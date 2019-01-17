@@ -1,5 +1,8 @@
-#pragma once
+#ifndef ENEMYIMMOVABLE_H
+#define ENEMYIMMOVABLE_H
+
 #include "EnemyBase.h"
+
 class EnemyImmovable : public EnemyBase
 {
 public:
@@ -8,4 +11,5 @@ public:
 
 	void Move();
 };
+#endif
 
