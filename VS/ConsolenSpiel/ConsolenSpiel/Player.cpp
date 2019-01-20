@@ -1,33 +1,33 @@
 #include "pch.h"
 #include "Player.h"
 #include <iostream>
+#include "AppConstants.h"
 
 using namespace std;
 
-Player::Player(short currentX, short currentY, TextBuffer * textBuffer) : Figure(currentX, currentY, textBuffer)
+Player::Player(short const & currentX, short const & currentY, TextBuffer * textBuffer) : Figure(currentX, currentY, textBuffer)
 {
-	sign = 'P';
-	textBuffer->SetChar(currentX, currentY, sign);
+	textBuffer->SetChar(currentX, currentY, AppConstants::PLAYERCHAR);
 }
 
-void Player::Move(DirectionEnum MovedDrection)
+void Player::Move(DirectionEnum const & MovedDrection)
 {
 	direction = MovedDrection;
 	short newXPos = currentX;
 	short newYPos = currentY;
 
-	SetNewPos(direction, &newXPos, &newYPos);
+	GetNextPos(direction, &newXPos, &newYPos);
 
-	char test = textBuffer->GetChar(newXPos, newYPos);
-	if (test != 'x') {
-		if (test == '*')
+	char charOnPos = textBuffer->GetChar(newXPos, newYPos);
+	if (charOnPos != AppConstants::BORDERCHAR) {
+		if (charOnPos == AppConstants::COINCHAR)
 			CoinsCount++;
-		else if (test == '.')
+		else if (charOnPos == AppConstants::BULLETCHAR)
 			Health--;
 		textBuffer->SetChar(currentX, currentY, ' ');
 		currentX = newXPos;
 		currentY = newYPos;
-		textBuffer->SetChar(currentX, currentY, sign);
+		textBuffer->SetChar(currentX, currentY, AppConstants::PLAYERCHAR);
 	} 
 }
 

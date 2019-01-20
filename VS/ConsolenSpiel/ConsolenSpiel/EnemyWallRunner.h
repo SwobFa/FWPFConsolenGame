@@ -6,7 +6,7 @@
 class EnemyWallRunner : public EnemyBase
 {
 public:
-	EnemyWallRunner(short currentX, short currentY, TextBuffer * textBuffer, short speed, DirectionEnum startDirection);
+	EnemyWallRunner(short const & currentX, short const & currentY, TextBuffer * textBuffer, long const & speed, DirectionEnum const & startDirection);
 	~EnemyWallRunner();
 
 	void Move();

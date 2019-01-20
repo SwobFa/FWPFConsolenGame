@@ -1,8 +1,9 @@
 #include "pch.h"
 #include "EnemyImmovable.h"
+#include "MillisecondsHelper.h"
 
 
-EnemyImmovable::EnemyImmovable(short currentX, short currentY, TextBuffer * textBuffer, short speed, DirectionEnum startDirection) : EnemyBase(currentX, currentY, textBuffer, speed, startDirection)
+EnemyImmovable::EnemyImmovable(short const & currentX, short const & currentY, TextBuffer * textBuffer, long const & speed, DirectionEnum const & startDirection) : EnemyBase(currentX, currentY, textBuffer, speed, startDirection)
 {
 }
 
@@ -13,16 +14,10 @@ EnemyImmovable::~EnemyImmovable()
 
 void EnemyImmovable::Move()
 {
-	if (Health > 0) {
-		ticks++;
-		if (ticks == speed)
-		{
-
-			ChangeDirection();
-
-			ticks = 0;
-			moveCounter++;
-		}
+	if ((get_milliseconds() - lastMoveMs >= speed || lastMoveMs == 0) && Health > 0)
+	{
+		direction = GetRandomDirection();
+		lastMoveMs = get_milliseconds();
 	}
 }
 

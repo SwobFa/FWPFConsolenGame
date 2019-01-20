@@ -13,24 +13,20 @@ class Game
 	EnemyImmovable * enemy2;
 	EnemyWallRunner * enemy3;
 
-	const short width = 51;
-	const short height = 15;
-
-
 	void MoveEnemy();
 	void ClearBullets();
 	void EnemyShoot();
-	void MovePlayer(int input, Player * player);
-	void ShowConsoleCursor(bool showFlag);
+	void MovePlayer(int const & input, Player * player);
+	void ShowConsoleCursor(bool const & showFlag);
 	void PrintStatus();
 	bool ContinueGame();
-	void ProcessInput(char inputChar);
+	void ProcessInput(char const & inputChar);
 public:
 	Game();
 	~Game();
 
 	short ChooseMap();
-	void StartGame(short mapNumber);
+	void StartGame(short const & mapNumber);
 
 };
 

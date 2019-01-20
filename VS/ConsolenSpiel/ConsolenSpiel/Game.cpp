@@ -11,6 +11,7 @@
 #include "EnemyImmovable.h"
 #include "EnemyWallRunner.h"
 #include "MapReader.h"
+#include "AppConstants.h"
 
 using namespace std;
 
@@ -21,26 +22,26 @@ Game::Game()
 
 Game::~Game()
 {
-	tb->~TextBuffer();
-	player->~Player();
-	enemy->~EnemyRandomMove();
-	enemy2->~EnemyImmovable();
-	enemy3->~EnemyWallRunner();
+	delete enemy3;
+	delete enemy2;
+	delete enemy;
+	delete player;
+	delete tb;
 }
 
-void Game::StartGame(short mapNumber)
+void Game::StartGame(short const & mapNumber)
 {
 	ShowConsoleCursor(false);
 
-	char* map = GetMapFromFile(mapNumber);
+	char * map = GetMapFromFile(mapNumber);
 
-	int inputChar = 0;
-
-	tb = new TextBuffer(width, height, map);
+	tb = new TextBuffer(AppConstants::MAPWIDTH, AppConstants::MAPHEIGHT, map);
 	player = new Player(1, 1, tb);
 	enemy = new EnemyRandomMove(48, 12, tb, 100, DirectionEnum::South);
 	enemy2 = new EnemyImmovable(4, 9, tb, 200, DirectionEnum::North);
 	enemy3 = new EnemyWallRunner(45, 2, tb, 100, DirectionEnum::West);
+
+	int inputChar = 0;
 
 	while (inputChar != 27) {
 
@@ -67,9 +68,9 @@ void Game::StartGame(short mapNumber)
 	}
 }
 
-void Game::ProcessInput(char inputChar)
+void Game::ProcessInput(char const & inputChar)
 {
-	
+
 
 	if (inputChar == 119 || inputChar == 97 || inputChar == 115 || inputChar == 100)
 	{
@@ -102,23 +103,21 @@ bool Game::ContinueGame()
 	{
 		std::system("cls");
 		cout << "Game Over" << endl;
-		Sleep(5000);
+		Sleep(3000);
 		return false;
 	}
 	else if (player->CoinsCount == 5)
 	{
 		std::system("cls");
 		cout << "Congratulation!!!!!!!" << endl << "All Coins collected" << endl;
-		Sleep(5000);
+		Sleep(3000);
 		return false;
 	}
 	return true;
 }
 
 
-
-
-void Game::MovePlayer(int input, Player * player) {
+void Game::MovePlayer(int const & input, Player * player) {
 	switch (input) {
 		// w
 	case 119:
@@ -143,17 +142,24 @@ void Game::MovePlayer(int input, Player * player) {
 
 short Game::ChooseMap()
 {
-	std::system("cls");
-	short mapNumber;
-	stringstream ss;
-	ss << "Choose a map between 1 and " << GetMapCount() << ":" << endl;
-	cout << ss.str();
-	cin >> mapNumber;
-	return  mapNumber;
+	while (true)
+	{
+		std::system("cls");
+		short mapNumber;
+		short availableMaps = GetMapCount();
+
+		stringstream ss;
+		ss << "Choose a map between 1 and " << availableMaps << ":" << endl;
+		cout << ss.str();
+		cin >> mapNumber;
+		if (mapNumber <= availableMaps && mapNumber > 0)
+			return  mapNumber;
+	}
+	return 1;
 }
 
 
-void Game::ShowConsoleCursor(bool showFlag)
+void Game::ShowConsoleCursor(bool const & showFlag)
 {
 	HANDLE out = GetStdHandle(STD_OUTPUT_HANDLE);
 
@@ -174,14 +180,9 @@ void Game::ClearBullets()
 
 void Game::EnemyShoot()
 {
-	COORD hitCoords = enemy->Shoot();
-	player->Hit(hitCoords);
-
-	COORD hitCoords2 = enemy2->Shoot();
-	player->Hit(hitCoords2);
-
-	COORD hitCoords3 = enemy3->Shoot();
-	player->Hit(hitCoords3);
+	player->Hit(enemy->Shoot());
+	player->Hit(enemy2->Shoot());
+	player->Hit(enemy3->Shoot());
 }
 
 void Game::MoveEnemy()

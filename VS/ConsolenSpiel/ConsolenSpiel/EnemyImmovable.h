@@ -6,7 +6,7 @@
 class EnemyImmovable : public EnemyBase
 {
 public:
-	EnemyImmovable(short currentX, short currentY, TextBuffer * textBuffer, short speed, DirectionEnum startDirection);
+	EnemyImmovable(short const & currentX, short const & currentY, TextBuffer * textBuffer, long const & speed, DirectionEnum const & startDirection);
 	~EnemyImmovable();
 
 	void Move();

@@ -6,28 +6,36 @@
 
 using namespace std;
 
-TextBuffer::TextBuffer(short width, short height, char * map) : Width(width), Height(height), field(map) {
+TextBuffer::TextBuffer(short const & width, short const & height, char * map) : Width(width), Height(height), field(map) {
 }
 
 TextBuffer::~TextBuffer() {
-	delete[] field;
+
 }
 
-void TextBuffer::SetChar(short x, short y, char character) {
+void TextBuffer::SetChar(short const & x, short const & y, char const & character) {
 	short position = y * Width + x;
 	field[position] = character;
 }
 
-char TextBuffer::GetChar(short x, short y) {
+char TextBuffer::GetChar(short const & x, short const & y) {
 	short const position = y * Width + x;
 	if (position < (Height * Width))
 		return field[position];
 	return ' ';
 }
 
+void TextBuffer::SetAllChar(char const & character)
+{
+	short length = (Width*Height);
+	for (short i = 0; i < length; i++)
+	{
+		field[i] = character;
+	}
+}
+
 void TextBuffer::Render() {
-	COORD const coord = { 0, 0 };
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 0,0 });
 
 	short length = (Width*Height);
 	stringstream ss;
@@ -37,10 +45,8 @@ void TextBuffer::Render() {
 		{
 			cout << ss.str();
 			ss.str("");
-			ss.clear();
 		}
 		ss << field[i];
-		//cout << field[i];
 	}
 }
 

@@ -5,9 +5,9 @@
 class Player : public Figure
 {
 public:
-	Player(short currentX, short currentY, TextBuffer * textBuffer);
+	Player(short const & currentX, short const & currentY, TextBuffer * textBuffer);
 	~Player();
-	void Move(DirectionEnum direction);
+	void Move(DirectionEnum const & direction);
 	short CoinsCount;
 
 };

@@ -66,6 +66,9 @@
     <ClInclude Include="MapReader.h">
       <Filter>Headerdateien\Helper</Filter>
     </ClInclude>
+    <ClInclude Include="AppConstants.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -114,5 +117,8 @@
     <Text Include="map3.txt">
       <Filter>Maps</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

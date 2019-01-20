@@ -1,13 +1,13 @@
 #include "pch.h"
 #include "EnemyBase.h"
 #include <iostream>
+#include "AppConstants.h"
 
 using namespace std;
 
-EnemyBase::EnemyBase(short currentX, short currentY, TextBuffer * textBuffer, short speed, DirectionEnum startDirection) : Figure(currentX, currentY, textBuffer), speed(speed)
+EnemyBase::EnemyBase(short const & currentX, short const & currentY, TextBuffer * textBuffer, long const & speed, DirectionEnum const & startDirection) : Figure(currentX, currentY, textBuffer), speed(speed)
 {
-	sign = 'B';
-	textBuffer->SetChar(currentX, currentY, sign);
+	textBuffer->SetChar(currentX, currentY, AppConstants::ENEMYCHAR);
 	direction = startDirection;
 }
 
@@ -27,28 +27,19 @@ DirectionEnum EnemyBase::GetRandomDirection()
 	}
 }
 
-void EnemyBase::ChangeDirection()
-{
-	if (moveCounter % 10 == 0)
-	{
-		direction = GetRandomDirection();
-		moveCounter = 0;
-	}
-}
-
 void EnemyBase::MoveOneStep()
 {
 	short newXPos = currentX;
 	short newYPos = currentY;
 
-	SetNewPos(direction, &newXPos, &newYPos);
+	GetNextPos(direction, &newXPos, &newYPos);
 
-	char test = textBuffer->GetChar(newXPos, newYPos);
-	if (test != 'x' && test != 'P' && test != '*' && test != 'B') {
+	char charOnPos = textBuffer->GetChar(newXPos, newYPos);
+	if (charOnPos != AppConstants::BORDERCHAR && charOnPos != AppConstants::PLAYERCHAR && charOnPos != AppConstants::COINCHAR && charOnPos != AppConstants::ENEMYCHAR) {
 		textBuffer->SetChar(currentX, currentY, ' ');
 		currentX = newXPos;
 		currentY = newYPos;
-		textBuffer->SetChar(currentX, currentY, sign);
+		textBuffer->SetChar(currentX, currentY, AppConstants::ENEMYCHAR);
 	} 
 	else
 	{

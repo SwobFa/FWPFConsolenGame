@@ -5,8 +5,9 @@
 
 class EnemyRandomMove : public EnemyBase
 {
+	short moveCounter;
 public:
-	EnemyRandomMove(short currentX, short currentY, TextBuffer * textBuffer, short speed, DirectionEnum startDirection);
+	EnemyRandomMove(short const & currentX, short const & currentY, TextBuffer * textBuffer, long const & speed, DirectionEnum const & startDirection);
 	~EnemyRandomMove();
 
 	void Move();

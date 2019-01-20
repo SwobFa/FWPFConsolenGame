@@ -1,8 +1,9 @@
 #include "pch.h"
 #include "EnemyRandomMove.h"
+#include "MillisecondsHelper.h"
 
 
-EnemyRandomMove::EnemyRandomMove(short currentX, short currentY, TextBuffer * textBuffer, short speed, DirectionEnum startDirection) : EnemyBase(currentX, currentY, textBuffer, speed, startDirection)
+EnemyRandomMove::EnemyRandomMove(short const & currentX, short const & currentY, TextBuffer * textBuffer, long const & speed, DirectionEnum const & startDirection) : EnemyBase(currentX, currentY, textBuffer, speed, startDirection)
 {
 }
 
@@ -14,17 +15,17 @@ EnemyRandomMove::~EnemyRandomMove()
 
 void EnemyRandomMove::Move()
 {
-	if (Health > 0) {
-		ticks++;
-		if (ticks == speed)
+	if ((get_milliseconds() - lastMoveMs >= speed || lastMoveMs == 0) && Health > 0)
+	{
+		if (moveCounter % 10 == 0)
 		{
-
-			ChangeDirection();
-
-			MoveOneStep();
-
-			ticks = 0;
-			moveCounter++;
+			direction = GetRandomDirection();
+			moveCounter = 0;
 		}
+
+		MoveOneStep();
+
+		moveCounter++;
+		lastMoveMs = get_milliseconds();
 	}
 }

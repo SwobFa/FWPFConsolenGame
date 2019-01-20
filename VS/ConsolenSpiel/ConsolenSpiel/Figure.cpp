@@ -1,14 +1,15 @@
 #include "pch.h"
 #include "Figure.h"
 #include "MillisecondsHelper.h"
+#include "AppConstants.h"
 
 
-Figure::Figure(short currentX, short currentY, TextBuffer * textBuffer) : currentX(currentX), currentY(currentY), textBuffer(textBuffer)
+Figure::Figure(short const & startX, short const & startY, TextBuffer * textBuffer) : currentX(startX), currentY(startY), textBuffer(textBuffer)
 {
 
 }
 
-void Figure::SetNewPos(DirectionEnum direction, short* xPos, short* yPos)
+void Figure::GetNextPos(DirectionEnum const & direction, short* xPos, short* yPos)
 {
 
 	switch (direction) {
@@ -39,7 +40,7 @@ void Figure::SetNewPos(DirectionEnum direction, short* xPos, short* yPos)
 }
 
 
-void Figure::Hit(_COORD const coords)
+void Figure::Hit(COORD const coords)
 {
 	if (currentX == coords.X && currentY == coords.Y)
 	{
@@ -61,7 +62,7 @@ COORD Figure::Shoot()
 		shotStartX = currentX;
 		shotStartY = currentY;
 
-		SetNewPos(direction, &shotStartX, &shotStartY);
+		GetNextPos(direction, &shotStartX, &shotStartY);
 
 		short newXPos = shotStartX;
 		short newYPos = shotStartY;
@@ -69,7 +70,7 @@ COORD Figure::Shoot()
 		while (true)
 		{
 			char charOnPos = textBuffer->GetChar(newXPos, newYPos);
-			if (charOnPos != 'x' && charOnPos != 'B' && charOnPos != '*' &&  charOnPos != 'P') {
+			if (charOnPos != AppConstants::BORDERCHAR && charOnPos != AppConstants::ENEMYCHAR && charOnPos != AppConstants::COINCHAR &&  charOnPos != AppConstants::PLAYERCHAR) {
 
 				textBuffer->SetChar(newXPos, newYPos, '.');
 
@@ -80,7 +81,7 @@ COORD Figure::Shoot()
 			{
 				return { newXPos, newYPos };
 			}
-			SetNewPos(direction, &newXPos, &newYPos);
+			GetNextPos(direction, &newXPos, &newYPos);
 		}
 	}
 
@@ -106,14 +107,14 @@ void Figure::ClearBullets()
 
 }
 
-void Figure::ClearBulletsHorizontal(short startX, short endX, short yCoord)
+void Figure::ClearBulletsHorizontal(short const & startX, short const & endX, short const & yCoord)
 {
 	short currentXToDelete = startX;
 
 	while (currentXToDelete <= endX)
 	{
 		char charOnPos = textBuffer->GetChar(currentXToDelete, yCoord);
-		if (charOnPos == '.')
+		if (charOnPos == AppConstants::BULLETCHAR)
 			textBuffer->SetChar(currentXToDelete, yCoord, ' ');
 
 		currentXToDelete++;
@@ -121,14 +122,14 @@ void Figure::ClearBulletsHorizontal(short startX, short endX, short yCoord)
 
 }
 
-void Figure::ClearBulletsVertical(short startY, short endY, short xCoord)
+void Figure::ClearBulletsVertical(short const & startY, short const & endY, short const & xCoord)
 {
 	short currentYToDelete = startY;
 
 	while (currentYToDelete <= endY)
 	{
 		char charOnPos = textBuffer->GetChar(xCoord, currentYToDelete);
-		if (charOnPos == '.')
+		if (charOnPos == AppConstants::BULLETCHAR)
 			textBuffer->SetChar(xCoord, currentYToDelete, ' ');
 
 		currentYToDelete++;

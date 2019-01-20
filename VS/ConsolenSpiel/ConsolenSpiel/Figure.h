@@ -7,25 +7,23 @@
 class Figure
 {
 
-	void ClearBulletsHorizontal(short startX, short endX, short yCoord);
-	void ClearBulletsVertical(short startY, short endY, short xCoord);
+	void ClearBulletsHorizontal(short const & startX, short const & endX, short const & yCoord);
+	void ClearBulletsVertical(short const & startY, short const & endY, short const & xCoord);
 
 protected:
 
-	char sign;
 	short currentX, currentY;
 	short shotStartX, shotEndX;
 	short shotStartY, shotEndY;
 	long lastShotMs;
 	DirectionEnum direction = DirectionEnum::South;
 	TextBuffer * textBuffer;
-	bool shotFired = false;
 
-	void SetNewPos(DirectionEnum direction, short * xPos, short * yPos);
+	void GetNextPos(DirectionEnum const & direction, short * xPos, short * yPos);
 
 public:
 
-	Figure(short currentX, short currentY, TextBuffer * textBuffer);
+	Figure(short const  & startX, short const  & startY, TextBuffer * textBuffer);
 	~Figure();
 
 	COORD Shoot();

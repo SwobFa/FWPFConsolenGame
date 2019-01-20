@@ -4,17 +4,13 @@
 
 class EnemyBase : public Figure
 {
-	DirectionEnum GetRandomDirection();
-
 protected:
-	short ticks;
-	short speed;
-	short moveCounter;
-	
-	void ChangeDirection();
+	long lastMoveMs, speed;
+
 	void MoveOneStep();
+	DirectionEnum GetRandomDirection();
 public:
-	EnemyBase(short currentX, short currentY, TextBuffer * textBuffer, short speed, DirectionEnum startDirection);
+	EnemyBase(short const & currentX, short const & currentY, TextBuffer * textBuffer, long const & speed, DirectionEnum const & startDirection);
 	~EnemyBase();
 	virtual void Move() = 0;
 };
